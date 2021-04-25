@@ -2,7 +2,7 @@
 
 const grid = document.querySelector('#grid');
 const gridSizeSelect = document.querySelector('#select-btn');
-let cells;
+let cells = document.querySelectorAll('.grid-item');
 let isDrawing = false;
 
 //let gss = gridSizeSelector;
@@ -24,8 +24,11 @@ for (let i = 16; i < 101; i++) {
 //Functions
 
 function gridCellGenerator() {
-    grid.innerHTML = "";
     let x = gridSizeSelector();
+    grid.innerHTML = "";
+    grid.style.gridTemplateColumns = `repeat(${x}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${x}, 1fr)`;
+    
 
     for (let i = 0; i < x ** 2; i++) {
     let gridItem = document.createElement('div');
@@ -41,21 +44,9 @@ function gridSizeSelector() {
 }
 
 function eventListeners() {
-    /*cells.forEach(element => {
-        addEventListener('mousedown', () => {
-             isDrawing = true;
-             
-        });
-    });
     cells.forEach(element => {
-        addEventListener('mouseup', () => {
-             isDrawing = false;
-             
-        });
-    });*/
-    cells.forEach(element => {
-        addEventListener('mouseover', () => {
-            element.style.backgroundColor = 'red';             
-        });
+        element.addEventListener('mouseenter', () => {
+            element.style.backgroundColor = 'red';
     });
+        });
 }
