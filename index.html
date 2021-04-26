@@ -8,13 +8,18 @@
     <link rel="stylesheet" href= "style.css">
 </head>
 <body>
-    <div id="background">
+    <div class="flex-row">
         <div id="settings">
             <select id="select-btn"></select>
-            <input type="submit" onclick='gridGenerator()' value="Submit">
+            <button onclick='gridGenerator()'>Resize/Reset</button>
         </div>
-        <div id="grid">
+        <div id="effects">
+            <button>Warm</button>
+            <button>Cold</button>
+            <button>Rainbow</button>
         </div>
+    </div>
+    <div id="grid">
     </div>
     <script type="text/javascript" src="script.js"></script>
 </body>

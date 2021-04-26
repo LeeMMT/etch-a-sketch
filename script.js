@@ -5,11 +5,9 @@ const gridSizeSelect = document.querySelector('#select-btn');
 let isDrawing = false;
 let cells;
 
-//let gss = gridSizeSelector;
-
 //On page load
 
-gridGenerator();
+gridGenerator(x = 40);
 
 for (let i = 16; i < 101; i++) {
     let option = document.createElement('option');
