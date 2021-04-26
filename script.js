@@ -2,8 +2,8 @@
 
 const grid = document.querySelector('#grid');
 const gridSizeSelect = document.querySelector('#select-btn');
-let cells = document.querySelectorAll('.grid-item');
 let isDrawing = false;
+
 
 //let gss = gridSizeSelector;
 
@@ -11,7 +11,7 @@ let isDrawing = false;
 
 for (let i = 0; i < 256; i++) {
     let gridItem = document.createElement('div');
-    gridItem.classList.add('grid-item')
+    gridItem.classList.add('grid-item');
     grid.appendChild(gridItem);
 }
 
@@ -20,6 +20,24 @@ for (let i = 16; i < 101; i++) {
     option.innerText = i;
     gridSizeSelect.appendChild(option);
 }
+
+let cells = document.querySelectorAll('.grid-item');
+
+cells.forEach(element => {
+    element.addEventListener('mousedown', () => isDrawing = true)
+});
+
+cells.forEach(element => {
+    element.addEventListener('mouseup', () => isDrawing = false)
+});
+
+cells.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        if (isDrawing === true) {
+            element.style.backgroundColor = 'blue';
+        }
+    })
+});
 
 //Functions
 
@@ -36,17 +54,8 @@ function gridCellGenerator() {
     grid.appendChild(gridItem);
 }
     cells = document.querySelectorAll('.grid-item');
-    eventListeners();
 }
 
 function gridSizeSelector() {
     return(gridSizeSelect.selectedIndex + 16);
-}
-
-function eventListeners() {
-    cells.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            element.style.backgroundColor = 'red';
-    });
-        });
 }
