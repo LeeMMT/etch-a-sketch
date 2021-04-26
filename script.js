@@ -12,6 +12,7 @@ let isDrawing = false;
 for (let i = 0; i < 256; i++) {
     let gridItem = document.createElement('div');
     gridItem.classList.add('grid-item');
+    gridItem.setAttribute('draggable', 'disabled')
     grid.appendChild(gridItem);
 }
 
@@ -25,11 +26,11 @@ let cells = document.querySelectorAll('.grid-item');
 
 cells.forEach(element => {
     element.addEventListener('mousedown', () => isDrawing = true)
-});
+})
 
 cells.forEach(element => {
     element.addEventListener('mouseup', () => isDrawing = false)
-});
+})
 
 cells.forEach(element => {
     element.addEventListener('mouseenter', () => {
@@ -37,7 +38,13 @@ cells.forEach(element => {
             element.style.backgroundColor = 'blue';
         }
     })
-});
+})
+
+cells.forEach(element => {
+    element.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    })
+})
 
 //Functions
 
