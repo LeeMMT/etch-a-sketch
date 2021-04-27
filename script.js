@@ -10,10 +10,8 @@ const rainbow = ['f94144', 'f3722c', 'f8961e', 'f9c74f', '90be6d', '43aa8b', '57
 
 //colourStyle function references
 
-const blackStyle = function(element) {
-    if (isDrawing === true) {
-        element.style.backgroundColor = 'black';  
-}
+const blackStyle = function(i) {
+    cells[i].style.backgroundColor = 'black';
 }
 
 //On page load
@@ -68,8 +66,8 @@ function listenerGenerator() {
 
 function colorStyle(x) {
     if (x === undefined || x === 'black') {
-        cells.forEach(element => {
-            element.addEventListener('mouseenter', blackStyle(e, element))
-    })
-    } 
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].addEventListener('mouseenter', blackStyle)
+    }
+}
 }
