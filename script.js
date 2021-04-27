@@ -67,7 +67,7 @@ function listenerGenerator() {
 function colorStyle(x) {
     if (x === undefined || x === 'black') {
         for (let i = 0; i < cells.length; i++) {
-            cells[i].addEventListener('mouseenter', blackStyle)
+            cells[i].addEventListener('mouseenter', blackStyle(i))
     }
 }
 }
