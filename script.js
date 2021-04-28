@@ -11,8 +11,29 @@ const rainbow = ['f94144', 'f3722c', 'f8961e', 'f9c74f', '90be6d', '43aa8b', '57
 //colourStyle function references
 
 const blackStyle = function() {
-    this.style.backgroundColor = 'black'
+    if (isDrawing === true) {
+        this.style.backgroundColor = 'black'
+    }
 }
+
+const warmStyle = function() {
+    if (isDrawing === true) {
+        this.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+    }
+}
+
+const rainbowStyle = function() {
+    if (isDrawing === true) {
+        this.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 5)]}`;
+    }
+}
+
+const coldStyle = function() {
+    if (isDrawing === true) {
+        this.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+    }
+}
+
 
 //On page load
 
@@ -69,5 +90,17 @@ function colorStyle(x) {
         cells.forEach(element => {
             element.addEventListener('mouseenter', blackStyle)
         })
-}
+}   else if (x === 'warm') {
+        cells.forEach(element => {
+            element.addEventListener('mouseenter', warmStyle)
+    })
+}   else if (x === 'rainbow') {
+        cells.forEach(element => {
+            element.addEventListener('mouseenter', rainbowStyle)
+        })
+    }   else if (x === 'cold') {
+        cells.forEach(element => {
+            element.addEventListener('mouseenter', coldStyle)
+        })
+    }
 }
