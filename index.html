@@ -8,19 +8,22 @@
     <link rel="stylesheet" href= "style.css">
 </head>
 <body>
-    <div class="flex-row">
-        <div id="settings">
-            <select id="select-btn"></select>
-            <button onclick='gridSizeSelector()'>Resize/Reset</button>
+    <h1>Etch-A-Sketch</h1>
+    <div id="container">
+        <div class="flex-row">
+            <div id="settings">
+                <select id="select-btn"></select>
+                <button onclick='gridSizeSelector()'>Resize/Reset</button>
+            </div>
+            <div id="effects">
+                <button onclick="colorStyle('black')">Black</button>
+                <button onclick="colorStyle('warm')">Warm</button>
+                <button onclick="colorStyle('cold')">Cold</button>
+                <button onclick="colorStyle('rainbow')">Rainbow</button>
+            </div>
         </div>
-        <div id="effects">
-            <button onclick="colorStyle('black')">Black</button>
-            <button onclick="colorStyle('warm')">Warm</button>
-            <button onclick="colorStyle('cold')">Cold</button>
-            <button onclick="colorStyle('rainbow')">Rainbow</button>
+        <div id="grid">
         </div>
-    </div>
-    <div id="grid">
     </div>
     <script type="text/javascript" src="script.js"></script>
 </body>

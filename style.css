@@ -1,23 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
+    background-color: #f2cc8f;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    margin-top: -2em;
     align-items: center;
     justify-content:center;
-    background-color: #F4F1DE;
+}
+
+h1 {
+    font-size: 4em;
+    font-family: 'VT323', monospace;
+    color: #f4f1de;
+    background-color: #3d405b;
+    width: 100vw;
 }
 
 #grid {
     box-sizing: border-box;
     display: grid;
     grid-auto-flow: row;
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 700px;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    border-style: solid;
-    border-width: 2px;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
 }
 
 .grid-item {
@@ -26,17 +41,41 @@ body {
 
 .flex-row {
     display: flex;
-    width: 500px;
+    width: 700px;
 }
 
 #settings {
     align-self: flex-start;
+    text-align: left;
 }
 
 #effects {
     margin-left: auto;
+    text-align: end;
 }
 
 #select-btn, button {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
+
+button, select {
+    background-color: #f4f1de;
+    border-style: none;
+    border-radius: 3px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+    .flex-row, #grid {
+        width: 87vw;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    #grid {
+        height: 87vw;
+    }
+  }
