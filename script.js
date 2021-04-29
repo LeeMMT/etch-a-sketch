@@ -29,7 +29,12 @@ buttons.forEach(element => {
         })
         element.classList.toggle('active');
     })
+    element.addEventListener('click', e => {
+        color = e.target.innerText.toLowerCase();
+    });
 })
+
+
 
 document.querySelector('#effects button').classList.toggle('active');
 
@@ -39,7 +44,6 @@ function gridGenerator(x) {
     grid.innerHTML = "";
     grid.style.gridTemplateColumns = `repeat(${x}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${x}, 1fr)`;
-    
 
     for (let i = 0; i < x ** 2; i++) {
     let gridItem = document.createElement('div');
@@ -47,35 +51,40 @@ function gridGenerator(x) {
     grid.appendChild(gridItem); 
 }
     cells = document.querySelectorAll('.grid-item');
+
     listenerGenerator();
 }
 
 function gridSizeSelector() {
     let x = gridSizeSelect.selectedIndex + 16;
+
     gridGenerator(x);
 }
 
 function listenerGenerator() {
     cells.forEach(element => {
-        element.addEventListener('mousedown', () => isDrawing = true)
-    })
-    
-    cells.forEach(element => {
-        element.addEventListener('mouseup', () => isDrawing = false)
-    })
-    
-    cells.forEach(element => {
-        element.addEventListener('dragstart', (e) => {
-            e.preventDefault();
+        element.addEventListener('mousedown', () => {
+            isDrawing = true;
+            switch (color) {
+                case undefined:
+                case 'black':
+                    element.style.backgroundColor = 'black'
+                    break;
+                case 'warm':
+                    element.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                    break;
+                case 'cold':
+                    element.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                    break;
+                case 'rainbow':
+                    element.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 5)]}`;
+                    break;
+            }
         })
-    })
-    
-    colorStyle();   
-}
-
-function colorStyle(x) {
-    let color = x;
-    cells.forEach(element => {
+        
+        element.addEventListener('mouseup', () => isDrawing = false)
+        element.addEventListener('dragstart', e => e.preventDefault());
+        
         element.addEventListener('mouseenter', () => {
             if (isDrawing === true) {
                 switch (color) {
@@ -95,5 +104,9 @@ function colorStyle(x) {
                 }
             }
         })
-    })
+    })  
+}
+
+function colorChanger(x) {
+    let color = x;
 }
