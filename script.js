@@ -7,33 +7,7 @@ let cells;
 const warm = ['780116', 'f7b538', 'db7c26', 'd8572a', 'c32f27'];
 const cold = ['133c55', '386fa4', '59a5d8', '84d2f6', '91e5f6'];
 const rainbow = ['f94144', 'f3722c', 'f8961e', 'f9c74f', '90be6d', '43aa8b', '577590'];
-
-//colourStyle function references
-
-const blackStyle = function() {
-    if (isDrawing === true) {
-        this.style.backgroundColor = 'black'
-    }
-}
-
-const warmStyle = function() {
-    if (isDrawing === true) {
-        this.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
-    }
-}
-
-const rainbowStyle = function() {
-    if (isDrawing === true) {
-        this.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 5)]}`;
-    }
-}
-
-const coldStyle = function() {
-    if (isDrawing === true) {
-        this.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
-    }
-}
-
+let color;
 
 //On page load
 
@@ -86,21 +60,26 @@ function listenerGenerator() {
 }
 
 function colorStyle(x) {
-    if (x === undefined || x === 'black') {
-        cells.forEach(element => {
-            element.addEventListener('mouseenter', blackStyle)
+    let color = x;
+    cells.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            if (isDrawing === true) {
+                switch (color) {
+                    case undefined:
+                    case 'black':
+                        element.style.backgroundColor = 'black'
+                        break;
+                    case 'warm':
+                        element.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                        break;
+                    case 'cold':
+                        element.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                        break;
+                    case 'rainbow':
+                        element.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 5)]}`;
+                        break;
+                }
+            }
         })
-}   else if (x === 'warm') {
-        cells.forEach(element => {
-            element.addEventListener('mouseenter', warmStyle)
     })
-}   else if (x === 'rainbow') {
-        cells.forEach(element => {
-            element.addEventListener('mouseenter', rainbowStyle)
-        })
-    }   else if (x === 'cold') {
-        cells.forEach(element => {
-            element.addEventListener('mouseenter', coldStyle)
-        })
-    }
 }
