@@ -2,6 +2,7 @@
 
 const grid = document.querySelector('#grid');
 const gridSizeSelect = document.querySelector('#select-btn');
+const buttons = document.querySelectorAll('button.color-btn');
 let isDrawing = false;
 let cells;
 const warm = ['780116', 'f7b538', 'db7c26', 'd8572a', 'c32f27'];
@@ -18,6 +19,19 @@ for (let i = 16; i < 101; i++) {
     option.innerText = i;
     gridSizeSelect.appendChild(option);
 }
+
+buttons.forEach(element => {
+    element.addEventListener('click', () => {
+        buttons.forEach(element => {
+            if (element.classList.contains('active')) {
+                element.classList.toggle('active');
+            }
+        })
+        element.classList.toggle('active');
+    })
+})
+
+document.querySelector('#effects button').classList.toggle('active');
 
 //Functions
 

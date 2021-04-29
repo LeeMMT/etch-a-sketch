@@ -3,7 +3,6 @@
 body {
     background-color: #f2cc8f;
     text-align: center;
-    font-family: Helvetica, Arial, sans-serif;
 }
 
 #container {
@@ -32,7 +31,7 @@ h1 {
     height: 700px;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 .grid-item {
@@ -60,13 +59,25 @@ h1 {
 
 button, select {
     background-color: #f4f1de;
+    padding-top: 2px;
     border-style: none;
     border-radius: 3px;
+    font-size: 1em;
+    color: #495057;
 }
 
 button:hover {
     cursor: pointer;
+    color: #e07a5f;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
 }
+
+.active {
+    color: #e07a5f;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.color-btn {} /*Used as a differentiator on button elements when creating node list in js*/
 
 @media screen and (max-width: 750px) {
     .flex-row, #grid {
