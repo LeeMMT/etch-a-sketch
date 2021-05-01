@@ -50,7 +50,46 @@ function gridGenerator(x) {
 }
     cells = document.querySelectorAll('.grid-item');
 
-    listenerGenerator();
+    grid.addEventListener('dragstart', e => e.preventDefault());
+    grid.addEventListener('mouseup', () => isDrawing = false);
+
+    grid.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        switch (color) {
+            case 'black':
+                e.target.style.backgroundColor = 'black';
+                break;
+            case 'warm':
+                e.target.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                break;
+            case 'cold':
+                e.target.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                break;
+            case 'rainbow':
+                e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
+            break;
+        }
+    })
+
+    grid.addEventListener('mouseover', (e) => {
+        if (isDrawing === true) {
+            console.log('yo');
+        switch (color) {
+            case 'black':
+                e.target.style.backgroundColor = 'black';
+                break;
+            case 'warm':
+                e.target.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                break;
+            case 'cold':
+                e.target.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                break;
+            case 'rainbow':
+                e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
+            break;
+        }
+    }
+    })
 
     for (let i = 16; i < 101; i++) {
         let option = document.createElement('option');
@@ -59,49 +98,4 @@ function gridGenerator(x) {
     }
 
     gridSizeSelect.selectedIndex = x - 16;
-}
-
-function listenerGenerator() {
-    cells.forEach(element => {
-
-        element.addEventListener('mouseup', () => isDrawing = false)
-        element.addEventListener('dragstart', e => e.preventDefault());
-
-        element.addEventListener('mousedown', () => {
-            isDrawing = true;
-            switch (color) {
-                case 'black':
-                    element.style.backgroundColor = 'black';
-                    break;
-                case 'warm':
-                    element.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
-                    break;
-                case 'cold':
-                    element.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
-                    break;
-                case 'rainbow':
-                    element.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
-                break;
-            }
-        })
-        
-        element.addEventListener('mouseenter', () => {
-            if (isDrawing === true) {
-                switch (color) {
-                    case 'black':
-                        element.style.backgroundColor = 'black';
-                        break;
-                    case 'warm':
-                        element.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
-                        break;
-                    case 'cold':
-                        element.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
-                        break;
-                    case 'rainbow':
-                        element.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
-                    break;
-                }
-            }
-        })
-    })  
 }
