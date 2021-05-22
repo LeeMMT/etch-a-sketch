@@ -19,6 +19,9 @@ const gridSizeSelector = function() {
 //On page load
 
 const draw = function(e) {
+    if (e.type === 'touchstart' || e.type === 'touchmove') {
+        e.preventDefault();
+    }
     if (e.type === 'mousedown' || e.type === 'touchstart') {
         isDrawing = true;
     }
