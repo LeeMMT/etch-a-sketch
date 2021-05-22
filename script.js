@@ -31,19 +31,21 @@ const draw = function(e) {
     }
     if (e.touches) {
         e.preventDefault();
+        const elem = document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY);
+        
         if (isDrawing === true) {
             switch (color) {
                 case 'black':
-                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = 'black';
+                    elem.style.backgroundColor = 'black';
                     break;
                 case 'warm':
-                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                    elem.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
                     break;
                 case 'cold':
-                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                    elem.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
                     break;
                 case 'rainbow':
-                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
+                    elem.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
                 break;
             }
         }
