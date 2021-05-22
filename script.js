@@ -16,15 +16,6 @@ const gridSizeSelector = function() {
     gridGenerator(x);
 }
 
-//On page load
-
-const getTouchMouseTargetElement = function(e) {
-    if (e.touches) {
-      return document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY);
-    }
-    return e.target;
-  }
-
 const draw = function(e) {
     if (e.type === 'mousedown' || e.type === 'touchstart') {
         isDrawing = true;
@@ -32,8 +23,8 @@ const draw = function(e) {
     if (e.touches) {
         e.preventDefault();
         const elem = document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY);
-        
-        if (isDrawing === true) {
+
+        if (isDrawing === true && elem.parentElement === grid) {
             switch (color) {
                 case 'black':
                     elem.style.backgroundColor = 'black';
@@ -67,6 +58,8 @@ const draw = function(e) {
         }
     }
 }
+
+//On page load
 
 gridGenerator(x = 40);
 
