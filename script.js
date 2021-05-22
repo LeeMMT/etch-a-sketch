@@ -19,7 +19,7 @@ const gridSizeSelector = function() {
 //On page load
 
 const draw = function(e) {
-    if (e.type === 'mousedown') {
+    if (e.type === 'mousedown' || e.type === 'touchstart') {
         isDrawing = true;
     }
     if (isDrawing === true) {
@@ -73,9 +73,13 @@ function gridGenerator(x) {
 
     grid.addEventListener('dragstart', e => e.preventDefault());
     grid.addEventListener('mouseup', () => isDrawing = false);
+    grid.addEventListener('touchend', () => isDrawing = false);
 
     grid.addEventListener('mousedown', draw);
     grid.addEventListener('mouseover', draw);
+
+    grid.addEventListener('touchstart', draw);
+    grid.addEventListener('touchmove', draw);
 
     for (let i = 16; i < 101; i++) {
         let option = document.createElement('option');
