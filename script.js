@@ -18,6 +18,13 @@ const gridSizeSelector = function() {
 
 //On page load
 
+const getTouchMouseTargetElement = function(e) {
+    if (e.touches) {
+      return document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY);
+    }
+    return e.target;
+  }
+
 const draw = function(e) {
     if (e.type === 'mousedown') {
         isDrawing = true;
@@ -37,6 +44,7 @@ const draw = function(e) {
                 e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
             break;
         }
+        console.log(e.touches[0].pageX);
     }
 }
 
