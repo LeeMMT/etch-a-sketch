@@ -77,12 +77,11 @@ button:hover {
 
 @media screen and (max-width: 750px) {
     .flex-row, #grid {
-        width: 87vw;
+        width: 90vw;
     }
-  }
 
-  @media screen and (max-width: 750px) {
     #grid {
-        height: 87vw;
+        height: 90vw;
+        margin-top: 1em;
     }
   }
