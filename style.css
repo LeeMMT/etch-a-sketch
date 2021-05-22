@@ -3,13 +3,13 @@
 body {
     background-color: #f2cc8f;
     text-align: center;
+    height: 100vh;
 }
 
 #container {
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
-    height: 82vh;
-    width: 100%;
     align-items: center;
     justify-content:center;
 }
