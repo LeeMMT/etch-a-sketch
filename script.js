@@ -26,13 +26,29 @@ const getTouchMouseTargetElement = function(e) {
   }
 
 const draw = function(e) {
-    if (e.type === 'touchstart' || e.type === 'touchmove') {
-        e.preventDefault();
-    }
     if (e.type === 'mousedown' || e.type === 'touchstart') {
         isDrawing = true;
     }
-    if (isDrawing === true) {
+    if (e.touches) {
+        e.preventDefault();
+        if (isDrawing === true) {
+            switch (color) {
+                case 'black':
+                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = 'black';
+                    break;
+                case 'warm':
+                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                    break;
+                case 'cold':
+                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                    break;
+                case 'rainbow':
+                    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
+                break;
+            }
+        }
+
+    } else if (isDrawing === true) {
         switch (color) {
             case 'black':
                 e.target.style.backgroundColor = 'black';
@@ -47,7 +63,6 @@ const draw = function(e) {
                 e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
             break;
         }
-        console.log(e.touches[0].pageX);
     }
 }
 
