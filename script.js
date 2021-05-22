@@ -18,6 +18,28 @@ const gridSizeSelector = function() {
 
 //On page load
 
+const draw = function(e) {
+    if (e.type === 'mousedown') {
+        isDrawing = true;
+    }
+    if (isDrawing === true) {
+        switch (color) {
+            case 'black':
+                e.target.style.backgroundColor = 'black';
+                break;
+            case 'warm':
+                e.target.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
+                break;
+            case 'cold':
+                e.target.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
+                break;
+            case 'rainbow':
+                e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
+            break;
+        }
+    }
+}
+
 gridGenerator(x = 40);
 
 resizebtn.addEventListener('click', gridSizeSelector);
@@ -33,7 +55,6 @@ buttons.forEach(element => {
         color = e.target.innerText.toLowerCase();
     })
 })
-
 document.querySelector('#effects button').classList.toggle('active');
 
 //Functions
@@ -53,49 +74,13 @@ function gridGenerator(x) {
     grid.addEventListener('dragstart', e => e.preventDefault());
     grid.addEventListener('mouseup', () => isDrawing = false);
 
-    grid.addEventListener('mousedown', (e) => {
-        isDrawing = true;
-        switch (color) {
-            case 'black':
-                e.target.style.backgroundColor = 'black';
-                break;
-            case 'warm':
-                e.target.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
-                break;
-            case 'cold':
-                e.target.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
-                break;
-            case 'rainbow':
-                e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
-            break;
-        }
-    })
-
-    grid.addEventListener('mouseover', (e) => {
-        if (isDrawing === true) {
-            console.log('yo');
-        switch (color) {
-            case 'black':
-                e.target.style.backgroundColor = 'black';
-                break;
-            case 'warm':
-                e.target.style.backgroundColor = `#${warm[Math.floor(Math.random() * 5)]}`;
-                break;
-            case 'cold':
-                e.target.style.backgroundColor = `#${cold[Math.floor(Math.random() * 5)]}`;
-                break;
-            case 'rainbow':
-                e.target.style.backgroundColor = `#${rainbow[Math.floor(Math.random() * 7)]}`;
-            break;
-        }
-    }
-    })
+    grid.addEventListener('mousedown', draw);
+    grid.addEventListener('mouseover', draw);
 
     for (let i = 16; i < 101; i++) {
         let option = document.createElement('option');
         option.innerText = i;
         gridSizeSelect.appendChild(option);
     }
-
     gridSizeSelect.selectedIndex = x - 16;
 }
